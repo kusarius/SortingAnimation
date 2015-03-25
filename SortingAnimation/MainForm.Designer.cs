@@ -36,8 +36,12 @@
             this.genArrayButton = new System.Windows.Forms.Button();
             this.startAlgoButton = new System.Windows.Forms.Button();
             this.clearCanvasButton = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.animSpeedTrackBar = new System.Windows.Forms.TrackBar();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.animSpeedTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // canvasPanel
@@ -70,7 +74,6 @@
             this.mergesortRadioButton.Name = "mergesortRadioButton";
             this.mergesortRadioButton.Size = new System.Drawing.Size(93, 21);
             this.mergesortRadioButton.TabIndex = 3;
-            this.mergesortRadioButton.TabStop = true;
             this.mergesortRadioButton.Text = "Merge Sort";
             this.mergesortRadioButton.UseVisualStyleBackColor = true;
             // 
@@ -82,7 +85,6 @@
             this.heapsortRadioButton.Name = "heapsortRadioButton";
             this.heapsortRadioButton.Size = new System.Drawing.Size(85, 21);
             this.heapsortRadioButton.TabIndex = 4;
-            this.heapsortRadioButton.TabStop = true;
             this.heapsortRadioButton.Text = "Heap Sort";
             this.heapsortRadioButton.UseVisualStyleBackColor = true;
             // 
@@ -134,7 +136,6 @@
             this.reversedRadioButton.Name = "reversedRadioButton";
             this.reversedRadioButton.Size = new System.Drawing.Size(80, 21);
             this.reversedRadioButton.TabIndex = 4;
-            this.reversedRadioButton.TabStop = true;
             this.reversedRadioButton.Text = "Reversed";
             this.reversedRadioButton.UseVisualStyleBackColor = true;
             // 
@@ -146,7 +147,6 @@
             this.nsortedRadioButton.Name = "nsortedRadioButton";
             this.nsortedRadioButton.Size = new System.Drawing.Size(107, 21);
             this.nsortedRadioButton.TabIndex = 3;
-            this.nsortedRadioButton.TabStop = true;
             this.nsortedRadioButton.Text = "Nearly Sorted";
             this.nsortedRadioButton.UseVisualStyleBackColor = true;
             // 
@@ -158,14 +158,13 @@
             this.funiqueRadioButton.Name = "funiqueRadioButton";
             this.funiqueRadioButton.Size = new System.Drawing.Size(93, 21);
             this.funiqueRadioButton.TabIndex = 5;
-            this.funiqueRadioButton.TabStop = true;
             this.funiqueRadioButton.Text = "Few Unique";
             this.funiqueRadioButton.UseVisualStyleBackColor = true;
             // 
             // genArrayButton
             // 
             this.genArrayButton.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.genArrayButton.Location = new System.Drawing.Point(639, 247);
+            this.genArrayButton.Location = new System.Drawing.Point(639, 315);
             this.genArrayButton.Name = "genArrayButton";
             this.genArrayButton.Size = new System.Drawing.Size(136, 28);
             this.genArrayButton.TabIndex = 7;
@@ -176,17 +175,18 @@
             // startAlgoButton
             // 
             this.startAlgoButton.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.startAlgoButton.Location = new System.Drawing.Point(639, 281);
+            this.startAlgoButton.Location = new System.Drawing.Point(639, 349);
             this.startAlgoButton.Name = "startAlgoButton";
             this.startAlgoButton.Size = new System.Drawing.Size(136, 28);
             this.startAlgoButton.TabIndex = 8;
             this.startAlgoButton.Text = "Start algorithm";
             this.startAlgoButton.UseVisualStyleBackColor = true;
+            this.startAlgoButton.Click += new System.EventHandler(this.startAlgoButton_Click);
             // 
             // clearCanvasButton
             // 
             this.clearCanvasButton.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.clearCanvasButton.Location = new System.Drawing.Point(639, 315);
+            this.clearCanvasButton.Location = new System.Drawing.Point(639, 383);
             this.clearCanvasButton.Name = "clearCanvasButton";
             this.clearCanvasButton.Size = new System.Drawing.Size(136, 28);
             this.clearCanvasButton.TabIndex = 9;
@@ -194,11 +194,36 @@
             this.clearCanvasButton.UseVisualStyleBackColor = true;
             this.clearCanvasButton.Click += new System.EventHandler(this.clearCanvasButton_Click);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.animSpeedTrackBar);
+            this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.groupBox3.Location = new System.Drawing.Point(639, 247);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(136, 62);
+            this.groupBox3.TabIndex = 7;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Animation speed";
+            // 
+            // animSpeedTrackBar
+            // 
+            this.animSpeedTrackBar.AutoSize = false;
+            this.animSpeedTrackBar.LargeChange = 1;
+            this.animSpeedTrackBar.Location = new System.Drawing.Point(6, 24);
+            this.animSpeedTrackBar.Minimum = 1;
+            this.animSpeedTrackBar.Name = "animSpeedTrackBar";
+            this.animSpeedTrackBar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.animSpeedTrackBar.RightToLeftLayout = true;
+            this.animSpeedTrackBar.Size = new System.Drawing.Size(124, 30);
+            this.animSpeedTrackBar.TabIndex = 0;
+            this.animSpeedTrackBar.Value = 5;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.clearCanvasButton);
             this.Controls.Add(this.startAlgoButton);
             this.Controls.Add(this.genArrayButton);
@@ -213,6 +238,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.animSpeedTrackBar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -232,6 +259,8 @@
         private System.Windows.Forms.Button genArrayButton;
         private System.Windows.Forms.Button startAlgoButton;
         private System.Windows.Forms.Button clearCanvasButton;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TrackBar animSpeedTrackBar;
     }
 }
 

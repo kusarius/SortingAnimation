@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Windows.Forms;
-using Vortex;
 using Vortex.Drawing;
 
 namespace SortingAnimation {
@@ -15,8 +9,110 @@ namespace SortingAnimation {
         Canvas2D canvas;
 
         float[] array;
+        int si1 = -1, si2 = -1;
         bool isDrawing = false;
         Random rnd = new Random();
+
+        #region Sorting algoritms
+
+        void QuickSort(float[] a, int start, int end) {
+            int s = start, e = end;
+            float v = a[start + (end - start) / 2];
+            while (s <= e) {
+                while (a[s] < v) s++;
+                while (a[e] > v) e--;
+                if (s <= e) {
+                    Swap<float>(ref a[s], ref a[e]);
+                    Thread.Sleep(animSpeedTrackBar.Value);
+                    si1 = s; si2 = e;
+                    UpdateScene();
+                    s++;
+                    e--;
+                }
+            }
+            if (start < e) QuickSort(a, start, e);
+            if (s < end) QuickSort(a, s, end);
+        }
+
+        void MergeSort(float[] a, int start, int end) {
+            if (end - start < 2) return;
+            if (end - start == 2) {
+                if (a[start] > a[start + 1]) {
+                    Swap<float>(ref a[start], ref a[start + 1]);
+                    Thread.Sleep(animSpeedTrackBar.Value);
+                    si1 = start; si2 = start + 1;
+                    UpdateScene();
+                }
+                return;
+            }
+
+            int c = start + (end - start) / 2;
+            MergeSort(a, start, c);
+            MergeSort(a, c, end);
+
+            float[] tmp = new float[end - start];
+            int ap = 0, p1 = start, p2 = c;
+            while (ap < end - start) {
+                if (p2 >= end || (p1 < c && a[p1] < a[p2])) {
+                    tmp[ap] = a[p1];
+                    p1++;
+                }
+                else {
+                    tmp[ap] = a[p2];
+                    p2++;
+                }
+
+                ap++;
+            }
+
+            for (int i = start; i < end; i++) {
+                a[i] = tmp[i - start];
+                Thread.Sleep(animSpeedTrackBar.Value);
+                si1 = i; si2 = -1;
+                UpdateScene();
+            }
+        }
+
+        #region Heap sort
+
+        void Heapify(int count, int i, float[] a) {
+            int right = 2 * i, left = 2 * i + 1;
+            if (right >= count || left >= count) return;
+            if (a[i] < a[left] || a[i] < a[right]) {
+                int maxi = (a[left] > a[right]) ? left : right;
+                Swap(ref a[i], ref a[maxi]);
+
+                Thread.Sleep(animSpeedTrackBar.Value);
+                si1 = i; si2 = maxi;
+                UpdateScene();
+
+                Heapify(count, maxi, a);
+            }
+        }
+
+        void BuildHeap(float[] a) {
+            for (int i = a.Length / 2 - 1; i >= 0; i--)
+                Heapify(a.Length, i, a);
+        }
+
+        void HeapSort(float[] a) {
+            BuildHeap(a);
+            for (int i = a.Length - 1; i >= 0; i--) {
+                Swap(ref a[i], ref a[0]);
+
+                Thread.Sleep(animSpeedTrackBar.Value);
+                si1 = i; si2 = 0;
+                UpdateScene();
+
+                Heapify(i, 0, a);
+            }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Main program
 
         public MainForm() {
             InitializeComponent();
@@ -51,7 +147,8 @@ namespace SortingAnimation {
 
                 if (isDrawing) {
                     for (int i = 0; i < array.Length; i++)
-                        canvas.DrawLine(i, canvasPanel.Height, i, canvasPanel.Height - array[i], ColorU.WhiteSmoke);
+                        canvas.DrawLine(i, canvasPanel.Height, i, canvasPanel.Height - array[i], 
+                            (i == si1 || i == si2) ? ColorU.Red : ColorU.WhiteSmoke);
                 }
 
                 device.EndScene();
@@ -99,5 +196,23 @@ namespace SortingAnimation {
             isDrawing = true;
             UpdateScene();
         }
+
+        private void startAlgoButton_Click(object sender, EventArgs e) {
+            if (isDrawing) {
+                clearCanvasButton.Enabled = genArrayButton.Enabled 
+                    = startAlgoButton.Enabled = animSpeedTrackBar.Enabled = false;
+
+                if (qsortRadioButton.Checked) QuickSort(array, 0, array.Length - 1);
+                else if (mergesortRadioButton.Checked) MergeSort(array, 0, array.Length);
+                else if (heapsortRadioButton.Checked) HeapSort(array);
+
+                si1 = si2 = -1;
+                UpdateScene();
+                clearCanvasButton.Enabled = genArrayButton.Enabled 
+                    = startAlgoButton.Enabled = animSpeedTrackBar.Enabled = true;
+            }
+        }
+
+        #endregion
     }
 }
