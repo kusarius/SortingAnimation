@@ -15,6 +15,12 @@ namespace SortingAnimation {
 
         #region Sorting algoritms
 
+        void VisualizeArray(int _si1, int _si2) {
+            Thread.Sleep(animSpeedTrackBar.Value);
+            si1 = _si1; si2 = _si2;
+            UpdateScene();
+        }
+
         void QuickSort(float[] a, int start, int end) {
             int s = start, e = end;
             float v = a[start + (end - start) / 2];
@@ -23,9 +29,7 @@ namespace SortingAnimation {
                 while (a[e] > v) e--;
                 if (s <= e) {
                     Swap<float>(ref a[s], ref a[e]);
-                    Thread.Sleep(animSpeedTrackBar.Value);
-                    si1 = s; si2 = e;
-                    UpdateScene();
+                    VisualizeArray(s, e);
                     s++;
                     e--;
                 }
@@ -39,9 +43,7 @@ namespace SortingAnimation {
             if (end - start == 2) {
                 if (a[start] > a[start + 1]) {
                     Swap<float>(ref a[start], ref a[start + 1]);
-                    Thread.Sleep(animSpeedTrackBar.Value);
-                    si1 = start; si2 = start + 1;
-                    UpdateScene();
+                    VisualizeArray(start, start + 1);
                 }
                 return;
             }
@@ -67,9 +69,7 @@ namespace SortingAnimation {
 
             for (int i = start; i < end; i++) {
                 a[i] = tmp[i - start];
-                Thread.Sleep(animSpeedTrackBar.Value);
-                si1 = i; si2 = -1;
-                UpdateScene();
+                VisualizeArray(i, -1);
             }
         }
 
@@ -81,11 +81,7 @@ namespace SortingAnimation {
             if (a[i] < a[left] || a[i] < a[right]) {
                 int maxi = (a[left] > a[right]) ? left : right;
                 Swap(ref a[i], ref a[maxi]);
-
-                Thread.Sleep(animSpeedTrackBar.Value);
-                si1 = i; si2 = maxi;
-                UpdateScene();
-
+                VisualizeArray(i, maxi);
                 Heapify(count, maxi, a);
             }
         }
@@ -99,11 +95,7 @@ namespace SortingAnimation {
             BuildHeap(a);
             for (int i = a.Length - 1; i >= 0; i--) {
                 Swap(ref a[i], ref a[0]);
-
-                Thread.Sleep(animSpeedTrackBar.Value);
-                si1 = i; si2 = 0;
-                UpdateScene();
-
+                VisualizeArray(i, 0);
                 Heapify(i, 0, a);
             }
         }
