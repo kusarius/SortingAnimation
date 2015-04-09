@@ -29,10 +29,10 @@
             this.heapsortRadioButton = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.funiqueRadioButton = new System.Windows.Forms.RadioButton();
             this.randomRadioButton = new System.Windows.Forms.RadioButton();
             this.reversedRadioButton = new System.Windows.Forms.RadioButton();
             this.nsortedRadioButton = new System.Windows.Forms.RadioButton();
-            this.funiqueRadioButton = new System.Windows.Forms.RadioButton();
             this.genArrayButton = new System.Windows.Forms.Button();
             this.startAlgoButton = new System.Windows.Forms.Button();
             this.clearCanvasButton = new System.Windows.Forms.Button();
@@ -115,6 +115,17 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Initial condition";
             // 
+            // funiqueRadioButton
+            // 
+            this.funiqueRadioButton.AutoSize = true;
+            this.funiqueRadioButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.funiqueRadioButton.Location = new System.Drawing.Point(12, 95);
+            this.funiqueRadioButton.Name = "funiqueRadioButton";
+            this.funiqueRadioButton.Size = new System.Drawing.Size(93, 21);
+            this.funiqueRadioButton.TabIndex = 5;
+            this.funiqueRadioButton.Text = "Few Unique";
+            this.funiqueRadioButton.UseVisualStyleBackColor = true;
+            // 
             // randomRadioButton
             // 
             this.randomRadioButton.AutoSize = true;
@@ -149,17 +160,6 @@
             this.nsortedRadioButton.TabIndex = 3;
             this.nsortedRadioButton.Text = "Nearly Sorted";
             this.nsortedRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // funiqueRadioButton
-            // 
-            this.funiqueRadioButton.AutoSize = true;
-            this.funiqueRadioButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.funiqueRadioButton.Location = new System.Drawing.Point(12, 95);
-            this.funiqueRadioButton.Name = "funiqueRadioButton";
-            this.funiqueRadioButton.Size = new System.Drawing.Size(93, 21);
-            this.funiqueRadioButton.TabIndex = 5;
-            this.funiqueRadioButton.Text = "Few Unique";
-            this.funiqueRadioButton.UseVisualStyleBackColor = true;
             // 
             // genArrayButton
             // 
@@ -208,15 +208,19 @@
             // animSpeedTrackBar
             // 
             this.animSpeedTrackBar.AutoSize = false;
-            this.animSpeedTrackBar.LargeChange = 1;
+            this.animSpeedTrackBar.LargeChange = 50;
             this.animSpeedTrackBar.Location = new System.Drawing.Point(6, 24);
+            this.animSpeedTrackBar.Maximum = 200;
             this.animSpeedTrackBar.Minimum = 1;
             this.animSpeedTrackBar.Name = "animSpeedTrackBar";
             this.animSpeedTrackBar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.animSpeedTrackBar.RightToLeftLayout = true;
             this.animSpeedTrackBar.Size = new System.Drawing.Size(124, 30);
+            this.animSpeedTrackBar.SmallChange = 10;
             this.animSpeedTrackBar.TabIndex = 0;
-            this.animSpeedTrackBar.Value = 5;
+            this.animSpeedTrackBar.TickFrequency = 40;
+            this.animSpeedTrackBar.Value = 50;
+            //this.animSpeedTrackBar.Scroll += new System.EventHandler(this.animSpeedTrackBar_Scroll);
             // 
             // MainForm
             // 

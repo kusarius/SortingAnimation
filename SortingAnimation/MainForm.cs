@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vortex.Drawing;
 
@@ -12,6 +13,9 @@ namespace SortingAnimation {
         int si1 = -1, si2 = -1;
         bool isDrawing = false;
         Random rnd = new Random();
+
+        const int stickWidth = 10;
+        const int stickXOffset = (stickWidth == 1) ? 0 : 1;
 
         #region Sorting algoritms
 
@@ -110,15 +114,15 @@ namespace SortingAnimation {
             InitializeComponent();
 
             // Array initialization
-            array = new float[canvasPanel.Width];
+            array = new float[canvasPanel.Width / stickWidth];
 
             device = new SingleContextDevice(canvasPanel.Handle);
             canvas = device.Context.Canvas;
         }
 
         private void CreateArray() {
-            for (int i = 0; i < array.Length; i++)
-                array[i] = (float)i * ((float)canvasPanel.Height / (float)canvasPanel.Width);
+            for (int i = 1; i <= array.Length; i++)
+                array[i - 1] = (float)i * ((float)canvasPanel.Height / (float)array.Length);
         }
 
         static void Swap<T>(ref T lhs, ref T rhs) {
@@ -139,7 +143,8 @@ namespace SortingAnimation {
 
                 if (isDrawing) {
                     for (int i = 0; i < array.Length; i++)
-                        canvas.DrawLine(i, canvasPanel.Height, i, canvasPanel.Height - array[i], 
+                        canvas.DrawFilledRect(i * stickWidth + stickXOffset, canvasPanel.Height - array[i], 
+                            stickWidth - stickXOffset, array[i], 
                             (i == si1 || i == si2) ? ColorU.Red : ColorU.WhiteSmoke);
                 }
 
@@ -175,12 +180,13 @@ namespace SortingAnimation {
             else if (funiqueRadioButton.Checked) {
                 int heightsCount = rnd.Next(4, 11);
                 float partHeight = (float)canvasPanel.Height / (float)heightsCount;
-                float partWidth = (float)canvasPanel.Width / (float)heightsCount;
+                float partWidth = (float)array.Length / (float)heightsCount;
 
-                for (int i = 0, h = 1, w = 1; i < array.Length; i++) {
-                    if (i <= h * partWidth) array[i] = h * partHeight;
-                    else { h++; w++; }
-                }
+                array[0] = partHeight;
+
+                for (int i = 1, ch = 1; i < array.Length; i++)
+                    if (i <= ch * partWidth) array[i] = array[i - 1];
+                    else { ch++; array[i] = ch * partHeight; }
 
                 Shuffle();
             }
@@ -190,19 +196,21 @@ namespace SortingAnimation {
         }
 
         private void startAlgoButton_Click(object sender, EventArgs e) {
-            if (isDrawing) {
-                clearCanvasButton.Enabled = genArrayButton.Enabled 
-                    = startAlgoButton.Enabled = animSpeedTrackBar.Enabled = false;
+            new Task(() => {
+                if (isDrawing) {
+                    clearCanvasButton.Enabled = genArrayButton.Enabled
+                        = startAlgoButton.Enabled = false;
 
-                if (qsortRadioButton.Checked) QuickSort(array, 0, array.Length - 1);
-                else if (mergesortRadioButton.Checked) MergeSort(array, 0, array.Length);
-                else if (heapsortRadioButton.Checked) HeapSort(array);
+                    if (qsortRadioButton.Checked) QuickSort(array, 0, array.Length - 1);
+                    else if (mergesortRadioButton.Checked) MergeSort(array, 0, array.Length);
+                    else if (heapsortRadioButton.Checked) HeapSort(array);
 
-                si1 = si2 = -1;
-                UpdateScene();
-                clearCanvasButton.Enabled = genArrayButton.Enabled 
-                    = startAlgoButton.Enabled = animSpeedTrackBar.Enabled = true;
-            }
+                    si1 = si2 = -1;
+                    UpdateScene();
+                    clearCanvasButton.Enabled = genArrayButton.Enabled
+                        = startAlgoButton.Enabled = true;
+                }
+            }).Start();
         }
 
         #endregion
