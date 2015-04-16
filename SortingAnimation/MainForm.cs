@@ -14,7 +14,7 @@ namespace SortingAnimation {
         Random rnd = new Random();
 
         static int stickWidth = 1;
-        int stickXOffset = (stickWidth == 1) ? 0 : 1;
+        static int stickXOffset = (stickWidth == 1) ? 0 : 1;
 
         Thread sortWork;
 
@@ -188,6 +188,10 @@ namespace SortingAnimation {
         }
 
         private void CreateArray() {
+            stickWidth = (int)stickWidthNumericUpDown.Value;
+            stickXOffset = (stickWidth == 1) ? 0 : 1;
+            array = new float[canvasPanel.Width / stickWidth];
+
             for (int i = 1; i <= array.Length; i++)
                 array[i - 1] = (float)i * ((float)canvasPanel.Height / (float)array.Length);
         }
@@ -287,12 +291,6 @@ namespace SortingAnimation {
             });
             
             sortWork.Start();
-        }
-
-        private void stickWidthNumericUpDown_ValueChanged(object sender, EventArgs e) {
-            stickWidth = (int)stickWidthNumericUpDown.Value;
-            stickXOffset = (stickWidth == 1) ? 0 : 1;
-            array = new float[canvasPanel.Width / stickWidth];
         }
 
         private void stopAlgoButton_Click(object sender, EventArgs e) {

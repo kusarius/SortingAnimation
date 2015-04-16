@@ -37,6 +37,8 @@
             this.insertionSortRadioButton = new System.Windows.Forms.RadioButton();
             this.bubbleSortRadioButton = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.stickWidthNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.funiqueRadioButton = new System.Windows.Forms.RadioButton();
             this.randomRadioButton = new System.Windows.Forms.RadioButton();
             this.reversedRadioButton = new System.Windows.Forms.RadioButton();
@@ -46,14 +48,12 @@
             this.clearCanvasButton = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.animSpeedTrackBar = new System.Windows.Forms.TrackBar();
-            this.stickWidthNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
             this.stomAlgoButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.stickWidthNumericUpDown)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.animSpeedTrackBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stickWidthNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // canvasPanel
@@ -177,6 +177,38 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Initial condition";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.label1.Location = new System.Drawing.Point(9, 126);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 17);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Stick width:";
+            // 
+            // stickWidthNumericUpDown
+            // 
+            this.stickWidthNumericUpDown.Location = new System.Drawing.Point(81, 123);
+            this.stickWidthNumericUpDown.Maximum = new decimal(new int[] {
+            63,
+            0,
+            0,
+            0});
+            this.stickWidthNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.stickWidthNumericUpDown.Name = "stickWidthNumericUpDown";
+            this.stickWidthNumericUpDown.Size = new System.Drawing.Size(44, 25);
+            this.stickWidthNumericUpDown.TabIndex = 10;
+            this.stickWidthNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // funiqueRadioButton
             // 
             this.funiqueRadioButton.AutoSize = true;
@@ -248,7 +280,7 @@
             // clearCanvasButton
             // 
             this.clearCanvasButton.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.clearCanvasButton.Location = new System.Drawing.Point(639, 496);
+            this.clearCanvasButton.Location = new System.Drawing.Point(639, 527);
             this.clearCanvasButton.Name = "clearCanvasButton";
             this.clearCanvasButton.Size = new System.Drawing.Size(136, 28);
             this.clearCanvasButton.TabIndex = 9;
@@ -283,43 +315,10 @@
             this.animSpeedTrackBar.TickFrequency = 40;
             this.animSpeedTrackBar.Value = 50;
             // 
-            // stickWidthNumericUpDown
-            // 
-            this.stickWidthNumericUpDown.Location = new System.Drawing.Point(81, 123);
-            this.stickWidthNumericUpDown.Maximum = new decimal(new int[] {
-            63,
-            0,
-            0,
-            0});
-            this.stickWidthNumericUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.stickWidthNumericUpDown.Name = "stickWidthNumericUpDown";
-            this.stickWidthNumericUpDown.Size = new System.Drawing.Size(44, 25);
-            this.stickWidthNumericUpDown.TabIndex = 10;
-            this.stickWidthNumericUpDown.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.stickWidthNumericUpDown.ValueChanged += new System.EventHandler(this.stickWidthNumericUpDown_ValueChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.label1.Location = new System.Drawing.Point(9, 126);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 17);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Stick width:";
-            // 
             // stomAlgoButton
             // 
             this.stomAlgoButton.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.stomAlgoButton.Location = new System.Drawing.Point(639, 527);
+            this.stomAlgoButton.Location = new System.Drawing.Point(639, 496);
             this.stomAlgoButton.Name = "stomAlgoButton";
             this.stomAlgoButton.Size = new System.Drawing.Size(136, 28);
             this.stomAlgoButton.TabIndex = 10;
@@ -348,9 +347,9 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.stickWidthNumericUpDown)).EndInit();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.animSpeedTrackBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stickWidthNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
