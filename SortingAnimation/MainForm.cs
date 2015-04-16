@@ -13,7 +13,7 @@ namespace SortingAnimation {
         bool isDrawing = false;
         Random rnd = new Random();
 
-        const int stickWidth = 10;
+        const int stickWidth = 3;
         const int stickXOffset = (stickWidth == 1) ? 0 : 1;
 
         Thread sortWork;
@@ -75,6 +75,21 @@ namespace SortingAnimation {
             for (int i = start; i < end; i++) {
                 a[i] = tmp[i - start];
                 VisualizeArray(i, -1);
+            }
+        }
+
+        void SelectionSort(float[] a) {
+            for (int i = 0; i < a.Length - 1; i++) {
+                int min = i;
+                for (int j = i + 1; j < a.Length; j++) {
+                    if (a[j] < a[min]) {
+                        min = j;
+                    }
+                }
+                float dummy = a[i];
+                a[i] = a[min];
+                a[min] = dummy;
+                VisualizeArray(i, min);
             }
         }
 
@@ -259,6 +274,7 @@ namespace SortingAnimation {
                     else if (insertionSortRadioButton.Checked) InsertionSort(array);
                     else if (bubbleSortRadioButton.Checked) BubbleSort(array);
                     else if (shakerSortRadioButton.Checked) ShakerSort(array);
+                    else if (selectionSortRadioButton.Checked) SelectionSort(array);
 
                     si1 = si2 = -1;
                     UpdateScene();

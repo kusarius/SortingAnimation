@@ -31,6 +31,9 @@
             this.mergesortRadioButton = new System.Windows.Forms.RadioButton();
             this.heapsortRadioButton = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.shakerSortRadioButton = new System.Windows.Forms.RadioButton();
+            this.insertionSortRadioButton = new System.Windows.Forms.RadioButton();
+            this.bubbleSortRadioButton = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.funiqueRadioButton = new System.Windows.Forms.RadioButton();
             this.randomRadioButton = new System.Windows.Forms.RadioButton();
@@ -41,9 +44,7 @@
             this.clearCanvasButton = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.animSpeedTrackBar = new System.Windows.Forms.TrackBar();
-            this.insertionSortRadioButton = new System.Windows.Forms.RadioButton();
-            this.bubbleSortRadioButton = new System.Windows.Forms.RadioButton();
-            this.shakerSortRadioButton = new System.Windows.Forms.RadioButton();
+            this.selectionSortRadioButton = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -96,6 +97,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.selectionSortRadioButton);
             this.groupBox1.Controls.Add(this.shakerSortRadioButton);
             this.groupBox1.Controls.Add(this.insertionSortRadioButton);
             this.groupBox1.Controls.Add(this.bubbleSortRadioButton);
@@ -105,10 +107,43 @@
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.groupBox1.Location = new System.Drawing.Point(639, 8);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(136, 166);
+            this.groupBox1.Size = new System.Drawing.Size(136, 189);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sorting algorithm";
+            // 
+            // shakerSortRadioButton
+            // 
+            this.shakerSortRadioButton.AutoSize = true;
+            this.shakerSortRadioButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.shakerSortRadioButton.Location = new System.Drawing.Point(12, 138);
+            this.shakerSortRadioButton.Name = "shakerSortRadioButton";
+            this.shakerSortRadioButton.Size = new System.Drawing.Size(93, 21);
+            this.shakerSortRadioButton.TabIndex = 7;
+            this.shakerSortRadioButton.Text = "Shaker Sort";
+            this.shakerSortRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // insertionSortRadioButton
+            // 
+            this.insertionSortRadioButton.AutoSize = true;
+            this.insertionSortRadioButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.insertionSortRadioButton.Location = new System.Drawing.Point(12, 115);
+            this.insertionSortRadioButton.Name = "insertionSortRadioButton";
+            this.insertionSortRadioButton.Size = new System.Drawing.Size(104, 21);
+            this.insertionSortRadioButton.TabIndex = 6;
+            this.insertionSortRadioButton.Text = "Insertion Sort";
+            this.insertionSortRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // bubbleSortRadioButton
+            // 
+            this.bubbleSortRadioButton.AutoSize = true;
+            this.bubbleSortRadioButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.bubbleSortRadioButton.Location = new System.Drawing.Point(12, 92);
+            this.bubbleSortRadioButton.Name = "bubbleSortRadioButton";
+            this.bubbleSortRadioButton.Size = new System.Drawing.Size(94, 21);
+            this.bubbleSortRadioButton.TabIndex = 5;
+            this.bubbleSortRadioButton.Text = "Bubble Sort";
+            this.bubbleSortRadioButton.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -117,7 +152,7 @@
             this.groupBox2.Controls.Add(this.reversedRadioButton);
             this.groupBox2.Controls.Add(this.nsortedRadioButton);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.groupBox2.Location = new System.Drawing.Point(639, 180);
+            this.groupBox2.Location = new System.Drawing.Point(639, 203);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(136, 125);
             this.groupBox2.TabIndex = 6;
@@ -173,7 +208,7 @@
             // genArrayButton
             // 
             this.genArrayButton.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.genArrayButton.Location = new System.Drawing.Point(639, 379);
+            this.genArrayButton.Location = new System.Drawing.Point(639, 402);
             this.genArrayButton.Name = "genArrayButton";
             this.genArrayButton.Size = new System.Drawing.Size(136, 28);
             this.genArrayButton.TabIndex = 7;
@@ -184,7 +219,7 @@
             // startAlgoButton
             // 
             this.startAlgoButton.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.startAlgoButton.Location = new System.Drawing.Point(639, 413);
+            this.startAlgoButton.Location = new System.Drawing.Point(639, 436);
             this.startAlgoButton.Name = "startAlgoButton";
             this.startAlgoButton.Size = new System.Drawing.Size(136, 28);
             this.startAlgoButton.TabIndex = 8;
@@ -195,7 +230,7 @@
             // clearCanvasButton
             // 
             this.clearCanvasButton.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.clearCanvasButton.Location = new System.Drawing.Point(639, 447);
+            this.clearCanvasButton.Location = new System.Drawing.Point(639, 470);
             this.clearCanvasButton.Name = "clearCanvasButton";
             this.clearCanvasButton.Size = new System.Drawing.Size(136, 28);
             this.clearCanvasButton.TabIndex = 9;
@@ -207,7 +242,7 @@
             // 
             this.groupBox3.Controls.Add(this.animSpeedTrackBar);
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.groupBox3.Location = new System.Drawing.Point(639, 311);
+            this.groupBox3.Location = new System.Drawing.Point(639, 334);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(136, 62);
             this.groupBox3.TabIndex = 7;
@@ -230,38 +265,16 @@
             this.animSpeedTrackBar.TickFrequency = 40;
             this.animSpeedTrackBar.Value = 50;
             // 
-            // insertionSortRadioButton
+            // selectionSortRadioButton
             // 
-            this.insertionSortRadioButton.AutoSize = true;
-            this.insertionSortRadioButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.insertionSortRadioButton.Location = new System.Drawing.Point(12, 114);
-            this.insertionSortRadioButton.Name = "insertionSortRadioButton";
-            this.insertionSortRadioButton.Size = new System.Drawing.Size(104, 21);
-            this.insertionSortRadioButton.TabIndex = 6;
-            this.insertionSortRadioButton.Text = "Insertion Sort";
-            this.insertionSortRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // bubbleSortRadioButton
-            // 
-            this.bubbleSortRadioButton.AutoSize = true;
-            this.bubbleSortRadioButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bubbleSortRadioButton.Location = new System.Drawing.Point(12, 92);
-            this.bubbleSortRadioButton.Name = "bubbleSortRadioButton";
-            this.bubbleSortRadioButton.Size = new System.Drawing.Size(94, 21);
-            this.bubbleSortRadioButton.TabIndex = 5;
-            this.bubbleSortRadioButton.Text = "Bubble Sort";
-            this.bubbleSortRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // shakerSortRadioButton
-            // 
-            this.shakerSortRadioButton.AutoSize = true;
-            this.shakerSortRadioButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.shakerSortRadioButton.Location = new System.Drawing.Point(12, 137);
-            this.shakerSortRadioButton.Name = "shakerSortRadioButton";
-            this.shakerSortRadioButton.Size = new System.Drawing.Size(93, 21);
-            this.shakerSortRadioButton.TabIndex = 7;
-            this.shakerSortRadioButton.Text = "Shaker Sort";
-            this.shakerSortRadioButton.UseVisualStyleBackColor = true;
+            this.selectionSortRadioButton.AutoSize = true;
+            this.selectionSortRadioButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.selectionSortRadioButton.Location = new System.Drawing.Point(12, 161);
+            this.selectionSortRadioButton.Name = "selectionSortRadioButton";
+            this.selectionSortRadioButton.Size = new System.Drawing.Size(106, 21);
+            this.selectionSortRadioButton.TabIndex = 8;
+            this.selectionSortRadioButton.Text = "Selection Sort";
+            this.selectionSortRadioButton.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -309,6 +322,7 @@
         private System.Windows.Forms.RadioButton insertionSortRadioButton;
         private System.Windows.Forms.RadioButton bubbleSortRadioButton;
         private System.Windows.Forms.RadioButton shakerSortRadioButton;
+        private System.Windows.Forms.RadioButton selectionSortRadioButton;
     }
 }
 
