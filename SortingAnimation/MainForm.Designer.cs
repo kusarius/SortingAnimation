@@ -14,7 +14,8 @@
                 components.Dispose();
             }
 
-            if (sortWork != null) sortWork.Abort();
+            if (sortWork != null && sortWork.IsAlive) 
+                sortWork.Abort();
 
             base.Dispose(disposing);
         }
@@ -31,6 +32,7 @@
             this.mergesortRadioButton = new System.Windows.Forms.RadioButton();
             this.heapsortRadioButton = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.selectionSortRadioButton = new System.Windows.Forms.RadioButton();
             this.shakerSortRadioButton = new System.Windows.Forms.RadioButton();
             this.insertionSortRadioButton = new System.Windows.Forms.RadioButton();
             this.bubbleSortRadioButton = new System.Windows.Forms.RadioButton();
@@ -44,11 +46,14 @@
             this.clearCanvasButton = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.animSpeedTrackBar = new System.Windows.Forms.TrackBar();
-            this.selectionSortRadioButton = new System.Windows.Forms.RadioButton();
+            this.stickWidthNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.stomAlgoButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.animSpeedTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stickWidthNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // canvasPanel
@@ -112,6 +117,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sorting algorithm";
             // 
+            // selectionSortRadioButton
+            // 
+            this.selectionSortRadioButton.AutoSize = true;
+            this.selectionSortRadioButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.selectionSortRadioButton.Location = new System.Drawing.Point(12, 161);
+            this.selectionSortRadioButton.Name = "selectionSortRadioButton";
+            this.selectionSortRadioButton.Size = new System.Drawing.Size(106, 21);
+            this.selectionSortRadioButton.TabIndex = 8;
+            this.selectionSortRadioButton.Text = "Selection Sort";
+            this.selectionSortRadioButton.UseVisualStyleBackColor = true;
+            // 
             // shakerSortRadioButton
             // 
             this.shakerSortRadioButton.AutoSize = true;
@@ -147,6 +163,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.stickWidthNumericUpDown);
             this.groupBox2.Controls.Add(this.funiqueRadioButton);
             this.groupBox2.Controls.Add(this.randomRadioButton);
             this.groupBox2.Controls.Add(this.reversedRadioButton);
@@ -154,7 +172,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.groupBox2.Location = new System.Drawing.Point(639, 203);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(136, 125);
+            this.groupBox2.Size = new System.Drawing.Size(136, 157);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Initial condition";
@@ -208,7 +226,7 @@
             // genArrayButton
             // 
             this.genArrayButton.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.genArrayButton.Location = new System.Drawing.Point(639, 402);
+            this.genArrayButton.Location = new System.Drawing.Point(639, 434);
             this.genArrayButton.Name = "genArrayButton";
             this.genArrayButton.Size = new System.Drawing.Size(136, 28);
             this.genArrayButton.TabIndex = 7;
@@ -219,7 +237,7 @@
             // startAlgoButton
             // 
             this.startAlgoButton.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.startAlgoButton.Location = new System.Drawing.Point(639, 436);
+            this.startAlgoButton.Location = new System.Drawing.Point(639, 465);
             this.startAlgoButton.Name = "startAlgoButton";
             this.startAlgoButton.Size = new System.Drawing.Size(136, 28);
             this.startAlgoButton.TabIndex = 8;
@@ -230,7 +248,7 @@
             // clearCanvasButton
             // 
             this.clearCanvasButton.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.clearCanvasButton.Location = new System.Drawing.Point(639, 470);
+            this.clearCanvasButton.Location = new System.Drawing.Point(639, 496);
             this.clearCanvasButton.Name = "clearCanvasButton";
             this.clearCanvasButton.Size = new System.Drawing.Size(136, 28);
             this.clearCanvasButton.TabIndex = 9;
@@ -242,7 +260,7 @@
             // 
             this.groupBox3.Controls.Add(this.animSpeedTrackBar);
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.groupBox3.Location = new System.Drawing.Point(639, 334);
+            this.groupBox3.Location = new System.Drawing.Point(639, 366);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(136, 62);
             this.groupBox3.TabIndex = 7;
@@ -265,22 +283,56 @@
             this.animSpeedTrackBar.TickFrequency = 40;
             this.animSpeedTrackBar.Value = 50;
             // 
-            // selectionSortRadioButton
+            // stickWidthNumericUpDown
             // 
-            this.selectionSortRadioButton.AutoSize = true;
-            this.selectionSortRadioButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.selectionSortRadioButton.Location = new System.Drawing.Point(12, 161);
-            this.selectionSortRadioButton.Name = "selectionSortRadioButton";
-            this.selectionSortRadioButton.Size = new System.Drawing.Size(106, 21);
-            this.selectionSortRadioButton.TabIndex = 8;
-            this.selectionSortRadioButton.Text = "Selection Sort";
-            this.selectionSortRadioButton.UseVisualStyleBackColor = true;
+            this.stickWidthNumericUpDown.Location = new System.Drawing.Point(81, 123);
+            this.stickWidthNumericUpDown.Maximum = new decimal(new int[] {
+            63,
+            0,
+            0,
+            0});
+            this.stickWidthNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.stickWidthNumericUpDown.Name = "stickWidthNumericUpDown";
+            this.stickWidthNumericUpDown.Size = new System.Drawing.Size(44, 25);
+            this.stickWidthNumericUpDown.TabIndex = 10;
+            this.stickWidthNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.stickWidthNumericUpDown.ValueChanged += new System.EventHandler(this.stickWidthNumericUpDown_ValueChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.label1.Location = new System.Drawing.Point(9, 126);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 17);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Stick width:";
+            // 
+            // stomAlgoButton
+            // 
+            this.stomAlgoButton.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.stomAlgoButton.Location = new System.Drawing.Point(639, 527);
+            this.stomAlgoButton.Name = "stomAlgoButton";
+            this.stomAlgoButton.Size = new System.Drawing.Size(136, 28);
+            this.stomAlgoButton.TabIndex = 10;
+            this.stomAlgoButton.Text = "Stop algorithm";
+            this.stomAlgoButton.UseVisualStyleBackColor = true;
+            this.stomAlgoButton.Click += new System.EventHandler(this.stopAlgoButton_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.stomAlgoButton);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.clearCanvasButton);
             this.Controls.Add(this.startAlgoButton);
@@ -298,6 +350,7 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.animSpeedTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stickWidthNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -323,6 +376,9 @@
         private System.Windows.Forms.RadioButton bubbleSortRadioButton;
         private System.Windows.Forms.RadioButton shakerSortRadioButton;
         private System.Windows.Forms.RadioButton selectionSortRadioButton;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown stickWidthNumericUpDown;
+        private System.Windows.Forms.Button stomAlgoButton;
     }
 }
 

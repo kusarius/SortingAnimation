@@ -13,8 +13,8 @@ namespace SortingAnimation {
         bool isDrawing = false;
         Random rnd = new Random();
 
-        const int stickWidth = 3;
-        const int stickXOffset = (stickWidth == 1) ? 0 : 1;
+        static int stickWidth = 1;
+        int stickXOffset = (stickWidth == 1) ? 0 : 1;
 
         Thread sortWork;
 
@@ -262,11 +262,15 @@ namespace SortingAnimation {
             UpdateScene();
         }
 
+        void EnableControls(bool enable) {
+            clearCanvasButton.Enabled = genArrayButton.Enabled
+                = startAlgoButton.Enabled = groupBox1.Enabled = groupBox2.Enabled = enable;
+        }
+
         private void startAlgoButton_Click(object sender, EventArgs e) {
             sortWork = new Thread(() => {
                 if (isDrawing) {
-                    clearCanvasButton.Enabled = genArrayButton.Enabled
-                        = startAlgoButton.Enabled = false;
+                    EnableControls(false);
 
                     if (qsortRadioButton.Checked) QuickSort(array, 0, array.Length - 1);
                     else if (mergesortRadioButton.Checked) MergeSort(array, 0, array.Length);
@@ -278,12 +282,26 @@ namespace SortingAnimation {
 
                     si1 = si2 = -1;
                     UpdateScene();
-                    clearCanvasButton.Enabled = genArrayButton.Enabled
-                        = startAlgoButton.Enabled = true;
+                    EnableControls(true);
                 }
             });
-
+            
             sortWork.Start();
+        }
+
+        private void stickWidthNumericUpDown_ValueChanged(object sender, EventArgs e) {
+            stickWidth = (int)stickWidthNumericUpDown.Value;
+            stickXOffset = (stickWidth == 1) ? 0 : 1;
+            array = new float[canvasPanel.Width / stickWidth];
+        }
+
+        private void stopAlgoButton_Click(object sender, EventArgs e) {
+            if (sortWork != null && sortWork.IsAlive) {
+                sortWork.Abort();
+                EnableControls(true);
+                si1 = si2 = -1;
+                UpdateScene();
+            }
         }
 
         #endregion
