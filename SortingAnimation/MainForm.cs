@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vortex.Drawing;
 
@@ -16,6 +15,8 @@ namespace SortingAnimation {
 
         const int stickWidth = 10;
         const int stickXOffset = (stickWidth == 1) ? 0 : 1;
+
+        Thread sortWork;
 
         #region Sorting algoritms
 
@@ -74,6 +75,57 @@ namespace SortingAnimation {
             for (int i = start; i < end; i++) {
                 a[i] = tmp[i - start];
                 VisualizeArray(i, -1);
+            }
+        }
+
+        void InsertionSort(float[] a) {
+            float curr;
+            int prevIndex;
+            for (int i = 1; i < a.Length; i++) {
+                curr = a[i];
+                prevIndex = i - 1;
+                while (prevIndex >= 0 && a[prevIndex] > curr) {
+                    a[prevIndex + 1] = a[prevIndex];
+                    a[prevIndex] = curr;
+                    VisualizeArray(prevIndex, prevIndex + 1);
+                    prevIndex--;
+                }
+            }
+        }
+
+        void BubbleSort(float[] a) {
+            for (int i = 0; i < a.Length; i++) {
+                int F = 0;
+                for (int c = 0; c < a.Length - i - 1; c++)
+                    if (a[c] > a[c + 1]) {
+                        Swap<float>(ref a[c], ref a[c + 1]);
+                        VisualizeArray(c, c + 1);
+                        F = 1;
+                    }
+                if (F == 0) break;
+            }
+        }
+
+        void ShakerSort(float[] a) {
+            int left = 0;
+            int right = a.Length - 1;
+
+            while (left <= right) {
+                for (int i = left; i < right; i++) {
+                    if (a[i] > a[i + 1]) {
+                        Swap<float>(ref a[i], ref a[i + 1]);
+                        VisualizeArray(i, i + 1);
+                    }
+                }
+                right--;
+
+                for (int i = right; i > left; i--) {
+                    if (a[i] < a[i - 1]) {
+                        Swap<float>(ref a[i], ref a[i - 1]);
+                        VisualizeArray(i, i - 1);
+                    }
+                }
+                left++;
             }
         }
 
@@ -196,7 +248,7 @@ namespace SortingAnimation {
         }
 
         private void startAlgoButton_Click(object sender, EventArgs e) {
-            new Task(() => {
+            sortWork = new Thread(() => {
                 if (isDrawing) {
                     clearCanvasButton.Enabled = genArrayButton.Enabled
                         = startAlgoButton.Enabled = false;
@@ -204,13 +256,18 @@ namespace SortingAnimation {
                     if (qsortRadioButton.Checked) QuickSort(array, 0, array.Length - 1);
                     else if (mergesortRadioButton.Checked) MergeSort(array, 0, array.Length);
                     else if (heapsortRadioButton.Checked) HeapSort(array);
+                    else if (insertionSortRadioButton.Checked) InsertionSort(array);
+                    else if (bubbleSortRadioButton.Checked) BubbleSort(array);
+                    else if (shakerSortRadioButton.Checked) ShakerSort(array);
 
                     si1 = si2 = -1;
                     UpdateScene();
                     clearCanvasButton.Enabled = genArrayButton.Enabled
                         = startAlgoButton.Enabled = true;
                 }
-            }).Start();
+            });
+
+            sortWork.Start();
         }
 
         #endregion
