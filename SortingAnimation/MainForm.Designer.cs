@@ -305,7 +305,6 @@
             this.animSpeedTrackBar.LargeChange = 50;
             this.animSpeedTrackBar.Location = new System.Drawing.Point(6, 24);
             this.animSpeedTrackBar.Maximum = 200;
-            this.animSpeedTrackBar.Minimum = 1;
             this.animSpeedTrackBar.Name = "animSpeedTrackBar";
             this.animSpeedTrackBar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.animSpeedTrackBar.RightToLeftLayout = true;
