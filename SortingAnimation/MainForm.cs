@@ -13,8 +13,8 @@ namespace SortingAnimation {
         bool isDrawing = false;
         Random rnd = new Random();
 
-        static int stickWidth = 1;
-        static int stickXOffset = (stickWidth == 1) ? 0 : 1;
+        int stickWidth;
+        int stickXOffset;
 
         Thread sortWork;
 
@@ -178,17 +178,14 @@ namespace SortingAnimation {
         public MainForm() {
             InitializeComponent();
 
-            // Array initialization
-            array = new float[canvasPanel.Width / stickWidth];
-
             device = new SingleContextDevice(canvasPanel.Handle);
             canvas = device.Context.Canvas;
         }
 
         private void CreateArray() {
-            stickWidth = (int)stickWidthNumericUpDown.Value;
+            stickWidth = (int)elCountNumericUpDown.Value;
             stickXOffset = (stickWidth == 1) ? 0 : 1;
-            array = new float[canvasPanel.Width / stickWidth];
+            array = new float[canvasPanel.Width / (int)elCountNumericUpDown.Value];
 
             for (int i = 1; i <= array.Length; i++)
                 array[i - 1] = (float)i * ((float)canvasPanel.Height / (float)array.Length);
