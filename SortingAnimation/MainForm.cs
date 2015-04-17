@@ -86,9 +86,7 @@ namespace SortingAnimation {
                         min = j;
                     }
                 }
-                float dummy = a[i];
-                a[i] = a[min];
-                a[min] = dummy;
+                Swap<float>(ref a[i], ref a[min]);
                 VisualizeArray(i, min);
             }
         }
